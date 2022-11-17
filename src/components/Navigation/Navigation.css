@@ -6,10 +6,10 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding-top: 30px;
-  padding-bottom: 26px;
+  padding: 0;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
+  margin:0;
   font-weight: 500;
   font-size: 18px;
   line-height: 133%;
@@ -27,6 +27,7 @@
 
 .nav__container{
   display: flex; 
+  height: 100%;
   flex-direction: row;
   justify-content: space-between;
   width: calc(100% - 208px);
@@ -37,7 +38,8 @@
   align-items: center;
   display: flex;    
   list-style-type: none;
-  column-gap: 42px;
+  column-gap: 34px;
+  height: 100%;
 }
 
 .nav__button-signin{
@@ -52,5 +54,24 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px; 
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav__item{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-right:4px;
+  padding-left:4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav__button-signin:hover{
+  opacity: 0.6;
+}
+
+.nav__item:hover{
+  border-bottom: solid 3px #FFFFFF;
 }
 

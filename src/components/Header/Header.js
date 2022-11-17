@@ -1,9 +1,8 @@
 import './Header.css';
 import Navigation from '../Navigation/Navigation'
-export default function Header(
-  onSubmit,
-  handleSearchChange
-) {
+import SearchForm from '../SearchForm/SearchForm'
+
+export default function Header() {
 
   return (
     <header className="header">
@@ -15,33 +14,7 @@ export default function Header(
         <p className="header__content">
           Find the latest news on any topic and save them in your personal account.
         </p>
-        <form
-          className="header__form_search"
-          name="searchForm"
-          onSubmit={onSubmit}
-        >
-          <fieldset className="header__fieldset">
-            <label className="header__label">
-              <input
-                className="header__input_search"
-                name="inputSearch"
-                id="header-search"
-                placeholder="Enter topic"
-                minLength="2"
-                maxLength="40"
-                onChange={handleSearchChange}
-                required
-              />
-            </label>
-            <button
-              type="submit"
-              className="header__button_search"
-            >
-              Search
-            </button>
-
-          </fieldset>
-        </form>
+        <SearchForm />
       </div>
     </header>
   )
