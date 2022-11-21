@@ -1,9 +1,93 @@
 .card{ 
+  position: relative;
   width: 400px;
-  height: 500px;
-  background: red;
+  height: 576px;
+  background: white;
   display: flex;
+  flex-direction: column;
   list-style: none;
+  border-radius: 16px;
 }
 
+.card__img{
+  width: 100%;
+  height: 272px;
+  border-radius: 16px 16px 0px 0px;
+}
 
+.card__content-box{
+  width: 100%;
+  height:calc(100% - 272px);
+  padding: 24px;
+}
+
+.card__date{
+  width: 100%;
+  margin: 0;
+  margin-bottom: 12px;
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 133%;
+  color: #B6BCBF;
+}
+
+.card__title{
+  width: 100%;
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.625rem;
+  line-height: 115%;
+  color: #1A1B22;
+}
+
+.card__content{
+  width: 100%;
+  height: 110px;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  white-space: normal;
+  display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 138%;
+  color: #1A1B22;
+  margin-top: 16px;
+  margin-bottom: 18px;
+}
+
+.card__source{
+  width: 100%;
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 125%;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #B6BCBF;
+}
+
+.card__save-button{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: url('../../images/save_normal.svg');
+  border: none;
+  top: 24px;
+  right: 24px;
+  background-position: center;
+  transition-duration: 0.3s;
+}
+
+.card__save-button:hover{
+  background: url('../../images/save_hover.svg');
+  cursor: pointer;
+}

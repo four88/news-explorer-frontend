@@ -10,9 +10,18 @@ export default function Main() {
           Search result
         </h1>
         <ul className='main__cards'>
-          <Card />
-          <Card />
-          <Card />
+          <Card
+            cardDate="November 4, 2020"
+            cardTitle="Everyone Needs a Special 'Sit spot' in Nature"
+            cardContent="dfakjlfjkadljkalfklfjdjlkajfklajdsfklfdjsalkfjkladfjklajdsklfjaklsdj
+            fdaskjlfjlakdfjklajfkljadskfakdlsajfa;from
+            fdakjfkdlasjfkldjfkljaklfjdjfa;kljdfakjfkjaklfjadkajf
+            fdasklfjdjfaklfjdkladjsfkjakldfjakdfjakajfdkjdfkjkadsjfkadsjfk
+            fdasfkljafjajdflkjafkljdlfdaksljfkldjfkldjaskfljkldfjkkfdljaf
+            fkdalsjfkldajsfkljaksldfjkaldsfjkdlafjkl;djfkl;fjfdaks;ljfdklfjkadls
+            fkadlsjfklsdfjkljfdasfsafdjlk"
+            cardSource="TREEHUGEER"
+          />
         </ul>
       </div>
     </section>
