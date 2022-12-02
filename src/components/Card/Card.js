@@ -1,19 +1,23 @@
 import './Card.css';
 
 export default function Card({
-  card
+  card,
+  onSaveClick
 }) {
+
+  const handleSaveClick = () => {
+    onSaveClick(card)
+  }
 
   return (
     <li className='card'>
-
       <button className="card__save-button"
-        onClick={""}
+        onClick={handleSaveClick}
       >
       </button>
       <img
-        alt="card-image"
-        src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1743&q=80"
+        alt={card.title}
+        src={card.img}
         className="card__img"
       />
       <div className="card__content-box">
@@ -27,7 +31,7 @@ export default function Card({
           {card.content}
         </p>
         <p className="card__source">
-          {card.card__source}
+          {card.cardSource}
         </p>
       </div>
 

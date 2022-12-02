@@ -6,6 +6,7 @@ export default function About() {
     <section className="about">
       <img
         className='about__img'
+        alt="about"
         src={aboutImg}
       />
       <div className='about__container'>

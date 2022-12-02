@@ -2,7 +2,9 @@ import './Header.css';
 import Navigation from '../Navigation/Navigation'
 import SearchForm from '../SearchForm/SearchForm'
 
-export default function Header() {
+export default function Header({
+  onSearchUpdate
+}) {
 
   return (
     <header className="header">
@@ -14,7 +16,10 @@ export default function Header() {
         <p className="header__content">
           Find the latest news on any topic and save them in your personal account.
         </p>
-        <SearchForm />
+        <SearchForm
+          onSearchUpdate={onSearchUpdate}
+        />
+
       </div>
     </header>
   )
