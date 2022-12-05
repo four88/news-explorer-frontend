@@ -3,12 +3,21 @@ import Navigation from '../Navigation/Navigation'
 import SearchForm from '../SearchForm/SearchForm'
 
 export default function Header({
-  onSearchUpdate
+  onSearchUpdate,
+  onClickSignIn,
+  isSignIn,
+  username,
+  inArticleRoute
 }) {
 
   return (
     <header className="header">
-      <Navigation />
+      <Navigation
+        onClickSignIn={onClickSignIn}
+        isSignIn={isSignIn}
+        username={username}
+        inArticleRoute={inArticleRoute}
+      />
       <div className="header__container-content">
         <h1 className="header__quote">
           What's going on in the world?
