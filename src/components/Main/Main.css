@@ -23,12 +23,40 @@
 }
 
 .main__heading{
-  font-family: 'Roboto Slab';
-font-style: normal;
-font-weight: 400;
-font-size: 40px;
-line-height: 115%;
-color: #1A1B22;
+  font-family: 'Roboto Slab', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 115%;
+  margin-top: 0;
+  margin-bottom: 64px;
+  color: #1A1B22;
+}
+
+.main__card{
+  list-style-type: none;
+}
+
+.main__more-button{
+  height: 64px;
+  width: 288px;
+  margin: auto;
+  margin-top: 64px;
+  background: #FFFFFF;
+  border: none;
+  border-radius: 80px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 133%;
+  color: #1A1B22;
+  transition-duration: 0.3s;
+}
+
+.main__more-button:hover{
+  background: #E8E8E8;
+  cursor: pointer;
 }
 
 

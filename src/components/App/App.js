@@ -60,18 +60,38 @@ function App() {
   // for sign in state if user already sign in set to true 
   const [isSignIn, setSignIn] = useState(false)
 
-
+  // for contain cards from news api
   const [cards, setCards] = useState([])
 
-  const keywords = ['cat', 'dog', 'bird']
+  // for count number of news when click on show more button
+  const [showMore, setShowMore] = useState(3)
+
+  // state for loading when search 
+  const [isLoading, setIsLoading] = useState(true)
+
+  // state for show result if user not serach keyword result = false
+  const [hasResult, setHasResult] = useState(false)
+
+  // state for check if news saved 
+  const [isSaved, setIsSaved] = useState(false)
+
 
   const handlePopup = () => {
     setPopupOpend(!isPopupOpened)
   }
   const handleSearchUpdate = () => {
     // send keyword to api
+    setHasResult(true)
+    setIsLoading(true)
     thirdPartyApi.getArticles(keyword)
-      .then((res) => setCards(res))
+      .then((res) => {
+        setShowMore(3)
+        setCards(res)
+      })
+      .then(() => {
+        setIsLoading(false)
+      })
+      .catch((err) => console.log(err))
   }
 
   const handleHasAccount = (evt) => {
@@ -109,6 +129,10 @@ function App() {
     console.log('sign up successed')
   }
 
+  const handleShowMoreClick = () => {
+    setShowMore(showMore + 3)
+  }
+
 
 
   const handleSaveCardClick = (card) => {
@@ -127,6 +151,11 @@ function App() {
       console.log('Please Sign in')
     }
   }
+
+  console.log(JSON.parse(localStorage.getItem('savedCards')))
+
+
+
 
   return (
     <CurrentKeywordContext.Provider value={[keyword, setKeyword]}>
@@ -151,11 +180,28 @@ function App() {
             isSignIn={isSignIn}
             inArticleRoute={false}
           />
-          <Main
-            cards={cards}
-            isSaved={false}
-            onSaveClick={handleSaveCardClick}
-          />
+
+          {hasResult ?
+            isLoading
+              ?
+              <Preloader
+                hasResult={true}
+              />
+              : cards.length > 0
+                ?
+                <Main
+                  cards={cards}
+                  inSavedNews={false}
+                  onSaveClick={handleSaveCardClick}
+                  showMore={showMore}
+                  handleShowMoreClick={handleShowMoreClick}
+                />
+                :
+                <Preloader hasResult={false} />
+            :
+            ""
+
+          }
           <About />
           <Footer />
         </Route>
@@ -173,10 +219,9 @@ function App() {
             inArticleRoute={true}
           />
           <SavedNewsHeader
-            keyword={keywords}
             username={account.username}
             onSaveClick={handleSaveCardClick}
-            isSaved={true}
+            inSavedNews={true}
           />
           <Footer />
         </ProtectedRoute>

@@ -41,6 +41,15 @@
   font-size: 1.625rem;
   line-height: 115%;
   color: #1A1B22;
+  height: 60px;
+  max-width: 352px;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  white-space: normal;
+  display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .card__content{
@@ -87,6 +96,22 @@
   transition-duration: 0.3s;
 }
 
+.card__save-button_marked{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: url('../../images/save_marked.svg');
+  border: none;
+  top: 24px;
+  right: 24px;
+  background-position: center;
+  transition-duration: 0.3s;
+  cursor: none;
+  pointer-events: none;
+}
+
+
+
 .card__save-button:hover{
   background: url('../../images/save_hover.svg');
   cursor: pointer;
@@ -107,4 +132,18 @@
 .card__delete-button:hover{
   background: url('../../images/delete_hover.svg');
   cursor: pointer;
+}
+
+.card__keyword{
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  padding: 8px 22px 8px 22px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  font-family: 'Roboto','sans-serif';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
 }

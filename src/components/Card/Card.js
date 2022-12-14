@@ -3,8 +3,9 @@ import './Card.css';
 export default function Card({
   card,
   onSaveClick,
-  isSaved,
-  onDeleteClick
+  inSavedNews,
+  onDeleteClick,
+  isSaved
 }) {
 
   const handleSaveClick = () => {
@@ -15,18 +16,38 @@ export default function Card({
     onDeleteClick(card)
   }
 
+
+  const formattedDate = (card) => {
+    const cardDate = card.publishedAt;
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const noTime = cardDate.slice(0, 10);
+    const date = new Date(noTime);
+    const formatDate = `${months[date.getMonth()]} ${date.getDate()},  ${date.getFullYear()}`;
+    return formatDate;
+  };
+
   return (
     <li className='card'>
-      {isSaved ?
-        <button className="card__delete-button"
-          onClick={handleDeleteClick}
-        >
-        </button>
+      {inSavedNews ?
+        <>
+          <span className='card__keyword'>
+            {card.keyword}
+          </span>
+          <button className="card__delete-button"
+            onClick={handleDeleteClick}
+          >
+          </button>
+        </>
         :
-        <button className="card__save-button"
-          onClick={handleSaveClick}
-        >
-        </button>
+        isSaved ?
+          <button className="card__save-button_marked"
+          >
+          </button>
+          :
+          <button className="card__save-button"
+            onClick={handleSaveClick}
+          >
+          </button>
       }
       <img
         alt={card.title}
@@ -35,7 +56,7 @@ export default function Card({
       />
       <div className="card__content-box">
         <p className="card__date">
-          {card.publishedAt}
+          {formattedDate(card)}
         </p>
         <h2 className="card__title">
           {card.title}

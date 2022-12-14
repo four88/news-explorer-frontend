@@ -1,12 +1,16 @@
 import './Main.css';
 import Card from '../Card/Card.js';
+import { useState, useEffect } from 'react';
 
 export default function Main({
   cards,
-  isSaved,
+  inSavedNews,
   onSaveClick,
-  onDeleteClick
+  onDeleteClick,
+  showMore,
+  handleShowMoreClick,
 }) {
+
 
 
   return (
@@ -16,18 +20,29 @@ export default function Main({
           Search result
         </h1>
         <ul className='main__cards'>
-          {cards.map((card) => {
+          {cards.slice(0, showMore).map((card) => {
             return (
-              <Card
-                card={card}
-                isSaved={isSaved}
-                onSaveClick={onSaveClick}
-                onDeleteClick={onDeleteClick}
-              />
+              <li className='main__card'>
+                <Card
+                  card={card}
+                  inSavedNews={inSavedNews}
+                  onSaveClick={onSaveClick}
+                  onDeleteClick={onDeleteClick}
+                  isSaved={false}
+                />
+              </li>
             )
-          })
-          }
+          })}
+
         </ul>
+        {showMore <= 100 &&
+          <button
+            className='main__more-button'
+            onClick={handleShowMoreClick}
+          >
+            Show more
+          </button>
+        }
       </div>
     </section>
   )

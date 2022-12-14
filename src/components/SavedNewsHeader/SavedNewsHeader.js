@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 
 export default function SavedNewsHeader({
   username,
-  keyword,
-  isSaved,
+  inSavedNews,
 }) {
 
   const [savedCards, setSavedCards] = useState([])
@@ -24,8 +23,18 @@ export default function SavedNewsHeader({
     console.log(savedCards)
   }
 
+  const findUniqueKeyword = (cards) => {
+    const keywords = []
+    for (let i = 0; i < cards.length; i++) {
+      keywords.push(cards[i].keyword)
+    }
+    let unique = [...new Set(keywords)];
+    return unique
+  }
 
+  const unique = findUniqueKeyword(savedCards)
 
+  console.log(savedCards)
 
   return (
     <>
@@ -41,7 +50,7 @@ export default function SavedNewsHeader({
             <p className='saved_news__keyword'>
               By keywords:
               <span className='saved_news__bold'>
-                {` ${keyword[0]}, ${keyword[1]}, and ${keyword.length - 2} other`}
+                {` ${unique[0]}, ${unique[1]}, and ${unique.length - 2} other`}
               </span>
             </p>
           </header>
@@ -52,7 +61,7 @@ export default function SavedNewsHeader({
               return (
                 <Card
                   card={card}
-                  isSaved={isSaved}
+                  inSavedNews={inSavedNews}
                   onDeleteClick={handleDeleteCardClick}
                 />
               )
