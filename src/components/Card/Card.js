@@ -1,15 +1,19 @@
 import './Card.css';
+import { useState } from 'react';
 
 export default function Card({
   card,
   onSaveClick,
   inSavedNews,
   onDeleteClick,
-  isSaved
 }) {
 
-  const handleSaveClick = () => {
-    onSaveClick(card)
+  const [isSaved, setIsSaved] = useState()
+
+  const handleSaveClick = async () => {
+    await onSaveClick(card)
+    setIsSaved(!isSaved)
+
   }
 
   const handleDeleteClick = () => {
