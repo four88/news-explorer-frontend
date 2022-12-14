@@ -9,6 +9,10 @@ import Main from '../Main/Main';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { Switch, Route } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
+import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import thirdPartyApi from '../../utils/ThirdPartyApi';
+
 
 function App() {
 
@@ -53,25 +57,21 @@ function App() {
     username: "Elise"
   })
 
-  // for sign in state 
-  const [isSignIn, setSignIn] = useState(true)
+  // for sign in state if user already sign in set to true 
+  const [isSignIn, setSignIn] = useState(false)
 
 
+  const [cards, setCards] = useState([])
 
-  const card = {
-    img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1743&q=80",
-    date: "13 Jan 2019",
-    title: "Meow",
-    content: 'fdkalj;fkldajfkjaklfjkdlafkljakljkjakfakslfjklasdjfklsajf',
-    cardSource: 'fkjaldjlkfjdakljfkla'
-  }
+  const keywords = ['cat', 'dog', 'bird']
 
   const handlePopup = () => {
     setPopupOpend(!isPopupOpened)
   }
   const handleSearchUpdate = () => {
     // send keyword to api
-    console.log(keyword)
+    thirdPartyApi.getArticles(keyword)
+      .then((res) => setCards(res))
   }
 
   const handleHasAccount = (evt) => {
@@ -93,13 +93,39 @@ function App() {
 
   const handleSubmitSignIn = (evt) => {
     evt.preventDefault()
+    setSignIn(true)
     console.log(account)
+    handlePopup()
+  }
+
+  const handleSignOutClick = () => {
+    setSignIn(false)
+    localStorage.removeItem('savedCards')
   }
 
   const handleSubmitSignup = (evt) => {
     evt.preventDefault()
     console.log(account)
     console.log('sign up successed')
+  }
+
+
+
+  const handleSaveCardClick = (card) => {
+    if (isSignIn) {
+      card.keyword = keyword
+      // list of saved card
+      let savedCards = []
+      // read from local if cannot get any card set empyty list
+      savedCards = JSON.parse(localStorage.getItem('savedCards')) || [];
+      // add card to list
+      savedCards.push(card)
+      // set to localstorage
+      localStorage.setItem('savedCards', JSON.stringify(savedCards))
+    }
+    else {
+      console.log('Please Sign in')
+    }
   }
 
   return (
@@ -116,30 +142,44 @@ function App() {
 
 
       <Switch>
-
         <Route path="/" exact>
           <Header
             username={account.username}
             onSearchUpdate={handleSearchUpdate}
             onClickSignIn={handleSignInClick}
+            onClickSignOut={handleSignOutClick}
             isSignIn={isSignIn}
             inArticleRoute={false}
           />
           <Main
-            card={card}
+            cards={cards}
+            isSaved={false}
+            onSaveClick={handleSaveCardClick}
           />
           <About />
           <Footer />
         </Route>
 
-        <Route path="/saved-news">
+        <ProtectedRoute
+          path="/saved-news"
+          isSignIn={isSignIn}
+          toPath='/'
+        >
           <Navigation
+            onClickSignIn={handleSignInClick}
             isSignIn={isSignIn}
+            onClickSignOut={handleSignOutClick}
             username={account.username}
             inArticleRoute={true}
           />
-        </Route>
-
+          <SavedNewsHeader
+            keyword={keywords}
+            username={account.username}
+            onSaveClick={handleSaveCardClick}
+            isSaved={true}
+          />
+          <Footer />
+        </ProtectedRoute>
       </Switch>
     </CurrentKeywordContext.Provider>
   );

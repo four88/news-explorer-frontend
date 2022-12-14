@@ -5,6 +5,7 @@ import SearchForm from '../SearchForm/SearchForm'
 export default function Header({
   onSearchUpdate,
   onClickSignIn,
+  onClickSignOut,
   isSignIn,
   username,
   inArticleRoute
@@ -14,6 +15,7 @@ export default function Header({
     <header className="header">
       <Navigation
         onClickSignIn={onClickSignIn}
+        onClickSignOut={onClickSignOut}
         isSignIn={isSignIn}
         username={username}
         inArticleRoute={inArticleRoute}

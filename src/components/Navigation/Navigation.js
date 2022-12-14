@@ -5,6 +5,7 @@ import logOutIconWhite from '../../images/logout_icon_white.svg';
 
 export default function Navigation({
   onClickSignIn,
+  onClickSignOut,
   isSignIn,
   username,
   inArticleRoute
@@ -49,7 +50,7 @@ export default function Navigation({
                         ${inArticleRoute ? 'nav__button-signin_black' : ""}
                         `}
                   type='button'
-                  onClick={onClickSignIn}
+                  onClick={onClickSignOut}
                 >
                   {username}
                   <img src={inArticleRoute ? logOutIconBlack : logOutIconWhite}

@@ -91,3 +91,20 @@
   background: url('../../images/save_hover.svg');
   cursor: pointer;
 }
+
+.card__delete-button{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: url('../../images/delete_normal.svg');
+  border: none;
+  top: 24px;
+  right: 24px;
+  background-position: center;
+  transition-duration: 0.3s;
+}
+
+.card__delete-button:hover{
+  background: url('../../images/delete_hover.svg');
+  cursor: pointer;
+}

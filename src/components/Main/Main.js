@@ -2,8 +2,12 @@ import './Main.css';
 import Card from '../Card/Card.js';
 
 export default function Main({
-  card
+  cards,
+  isSaved,
+  onSaveClick,
+  onDeleteClick
 }) {
+
 
   return (
     <section className="main">
@@ -12,9 +16,17 @@ export default function Main({
           Search result
         </h1>
         <ul className='main__cards'>
-          <Card
-            card={card}
-          />
+          {cards.map((card) => {
+            return (
+              <Card
+                card={card}
+                isSaved={isSaved}
+                onSaveClick={onSaveClick}
+                onDeleteClick={onDeleteClick}
+              />
+            )
+          })
+          }
         </ul>
       </div>
     </section>
