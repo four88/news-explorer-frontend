@@ -76,6 +76,9 @@ function App() {
   const handlePopup = () => {
     setPopupOpend(!isPopupOpened)
   }
+  const handleSignInNeededCardClick = () => {
+    handlePopup()
+  }
   const handleSearchUpdate = () => {
     // send keyword to api
     setHasResult(true)
@@ -130,11 +133,12 @@ function App() {
     setShowMore(showMore + 3)
   }
 
+  // for fix localstorage bug
   let savedCards = []
   useEffect(() => {
     localStorage.setItem('savedCards', JSON.stringify(savedCards))
   }, [])
-  // local storage
+
   const handleSaveCardClick = (card) => {
     if (isSignIn) {
       card.keyword = keyword
@@ -187,11 +191,13 @@ function App() {
               : cards.length > 0
                 ?
                 <Main
+                  isSignIn={isSignIn}
                   cards={cards}
                   inSavedNews={false}
                   onSaveClick={handleSaveCardClick}
                   showMore={showMore}
                   handleShowMoreClick={handleShowMoreClick}
+                  onSignInNeededClick={handleSignInNeededCardClick}
                 />
                 :
                 <Preloader hasResult={false} />

@@ -9,6 +9,8 @@ export default function Main({
   onDeleteClick,
   showMore,
   handleShowMoreClick,
+  isSignIn,
+  onSignInNeededClick
 }) {
 
 
@@ -24,11 +26,13 @@ export default function Main({
             return (
               <li className='main__card'>
                 <Card
+                  isSignIn={isSignIn}
                   card={card}
                   inSavedNews={inSavedNews}
                   onSaveClick={onSaveClick}
                   onDeleteClick={onDeleteClick}
                   isSaved={false}
+                  onSignInNeededClick={onSignInNeededClick}
                 />
               </li>
             )

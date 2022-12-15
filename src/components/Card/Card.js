@@ -6,6 +6,8 @@ export default function Card({
   onSaveClick,
   inSavedNews,
   onDeleteClick,
+  isSignIn,
+  onSignInNeededClick
 }) {
 
   const [isSaved, setIsSaved] = useState()
@@ -30,6 +32,11 @@ export default function Card({
     return formatDate;
   };
 
+  const handleSignInNeededClick = () => {
+    onSignInNeededClick(card)
+  }
+
+
   return (
     <li className='card'>
       {inSavedNews ?
@@ -43,15 +50,29 @@ export default function Card({
           </button>
         </>
         :
-        isSaved ?
-          <button className="card__save-button_marked"
-          >
-          </button>
+        isSignIn ?
+          isSaved ?
+            <button className="card__save-button_marked"
+            >
+            </button>
+            :
+            <>
+              <button className="card__save-button"
+                onClick={handleSaveClick}
+              >
+              </button>
+            </>
           :
-          <button className="card__save-button"
-            onClick={handleSaveClick}
-          >
-          </button>
+          <>
+
+            <button className="card__save-button card__save-button_signin"
+              onClick={handleSignInNeededClick}
+            >
+              <span className='card__signin' >
+                Sign in to save articles
+              </span>
+            </button>
+          </>
       }
       <img
         alt={card.title}
