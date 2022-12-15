@@ -43,7 +43,7 @@ export default function SavedNewsHeader({
       if (unique.length === 1) {
         return ` ${unique[0]}`
       }
-      if (unique.length === 1) {
+      if (unique.length === 2) {
         return ` ${unique[0]}, ${unique[1]} `
       }
     }

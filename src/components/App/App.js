@@ -130,12 +130,14 @@ function App() {
     setShowMore(showMore + 3)
   }
 
-
+  let savedCards = []
+  useEffect(() => {
+    localStorage.setItem('savedCards', JSON.stringify(savedCards))
+  }, [])
   // local storage
   const handleSaveCardClick = (card) => {
     if (isSignIn) {
       card.keyword = keyword
-      let savedCards = []
       // read from local if cannot get any card set empyty list
       savedCards = JSON.parse(localStorage.getItem('savedCards'));
       // add card to list
@@ -148,7 +150,6 @@ function App() {
     }
   }
 
-  console.log(JSON.parse(localStorage.getItem('savedCards')))
 
 
 
