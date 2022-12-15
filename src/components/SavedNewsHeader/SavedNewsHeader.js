@@ -12,10 +12,10 @@ export default function SavedNewsHeader({
   useEffect(() => {
     setSavedCards(JSON.parse(localStorage.getItem('savedCards')))
   }, [])
+  console.log(savedCards)
 
   const handleDeleteCardClick = (card) => {
     const index = savedCards.indexOf(card)
-
     console.log(savedCards)
     savedCards.splice(index, 1)
     localStorage.setItem('savedCards', JSON.stringify(savedCards))
@@ -32,9 +32,26 @@ export default function SavedNewsHeader({
     return unique
   }
 
-  const unique = findUniqueKeyword(savedCards)
+  console.log(findUniqueKeyword(savedCards)[0])
 
-  console.log(savedCards)
+  const listSpanKeyword = () => {
+    const unique = findUniqueKeyword(savedCards)
+    if (unique.length <= 2) {
+      if (unique.length === 0) {
+        return ' Not found any saved news'
+      }
+      if (unique.length === 1) {
+        return ` ${unique[0]}`
+      }
+      if (unique.length === 1) {
+        return ` ${unique[0]}, ${unique[1]} `
+      }
+    }
+    else {
+      return ` ${unique[0]}, ${unique[1]} and ${unique.length - 2} `
+    }
+  }
+
 
   return (
     <>
@@ -50,7 +67,7 @@ export default function SavedNewsHeader({
             <p className='saved_news__keyword'>
               By keywords:
               <span className='saved_news__bold'>
-                {` ${unique[0]}, ${unique[1]}, and ${unique.length - 2} other`}
+                {listSpanKeyword()}
               </span>
             </p>
           </header>

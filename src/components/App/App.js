@@ -72,9 +72,6 @@ function App() {
   // state for show result if user not serach keyword result = false
   const [hasResult, setHasResult] = useState(false)
 
-  // state for check if news saved 
-  const [isSaved, setIsSaved] = useState(false)
-
 
   const handlePopup = () => {
     setPopupOpend(!isPopupOpened)
@@ -94,7 +91,7 @@ function App() {
       .catch((err) => console.log(err))
   }
 
-  const handleHasAccount = (evt) => {
+  const handleHasAccount = () => {
     setHasAccount(!hasAccount)
   }
 
@@ -134,14 +131,13 @@ function App() {
   }
 
 
-
+  // local storage
   const handleSaveCardClick = (card) => {
     if (isSignIn) {
       card.keyword = keyword
-      // list of saved card
       let savedCards = []
       // read from local if cannot get any card set empyty list
-      savedCards = JSON.parse(localStorage.getItem('savedCards')) || [];
+      savedCards = JSON.parse(localStorage.getItem('savedCards'));
       // add card to list
       savedCards.push(card)
       // set to localstorage
@@ -220,7 +216,6 @@ function App() {
           />
           <SavedNewsHeader
             username={account.username}
-            onSaveClick={handleSaveCardClick}
             inSavedNews={true}
           />
           <Footer />
