@@ -1,5 +1,6 @@
 import './SavedNewsHeader.css';
 import Card from '../Card/Card';
+import Preloader from '../Preloader/Preloader';
 import { useState, useEffect } from 'react';
 
 export default function SavedNewsHeader({
@@ -14,15 +15,16 @@ export default function SavedNewsHeader({
   }, [])
   console.log(savedCards)
 
+  // for delete saved news 
   const handleDeleteCardClick = (card) => {
     const index = savedCards.indexOf(card)
     console.log(savedCards)
     savedCards.splice(index, 1)
     localStorage.setItem('savedCards', JSON.stringify(savedCards))
     setSavedCards(JSON.parse(localStorage.getItem('savedCards')))
-    console.log(savedCards)
   }
 
+  // find the unique keyword from saved news return list of unique keyword
   const findUniqueKeyword = (cards) => {
     const keywords = []
     for (let i = 0; i < cards.length; i++) {
@@ -32,8 +34,8 @@ export default function SavedNewsHeader({
     return unique
   }
 
-  console.log(findUniqueKeyword(savedCards)[0])
 
+  // show span how many keyword user have 
   const listSpanKeyword = () => {
     const unique = findUniqueKeyword(savedCards)
     if (unique.length <= 2) {
@@ -73,17 +75,26 @@ export default function SavedNewsHeader({
           </header>
         </div>
         <main className="saved_news__main">
-          <div className='saved_news__container saved_news__container-main'>
-            {savedCards.map((card) => {
-              return (
-                <Card
-                  card={card}
-                  inSavedNews={inSavedNews}
-                  onDeleteClick={handleDeleteCardClick}
-                />
-              )
-            })}
-          </div>
+          {savedCards.length > 0
+            ?
+            < div className='saved_news__container saved_news__container-main'>
+              {savedCards.map((card) => {
+                return (
+                  <Card
+                    card={card}
+                    inSavedNews={inSavedNews}
+                    onDeleteClick={handleDeleteCardClick}
+                  />
+                )
+              })}
+            </div>
+            :
+            <div className='saved_news__container saved_news__container-height'>
+              <Preloader
+                hasResult={false}
+              />
+            </div>
+          }
         </main>
       </section>
     </>

@@ -78,7 +78,7 @@
 
 .nav__link{
   text-decoration: none;
-  color: #B6BCBF;
+  color: #FFFFFF;
   transition: all 0.2s ease-in-out;
 }
 
@@ -96,14 +96,19 @@
 .nav__button-signin:hover{
   opacity: 0.6;
 }
+/**/
+/* .nav__item:hover{ */
+/*   border-bottom: solid 3px #FFFFFF; */
+/* } */
 
-.nav__item:hover{
+.nav__item-active{
   border-bottom: solid 3px #FFFFFF;
 }
 
-.nav__link:hover{
-  color: white;
+.nav__item-active{
+  border-bottom: solid 3px #FFFFFF;
 }
+
 
 /* change to black when go to /saved-news */
 .nav_black{
@@ -114,16 +119,16 @@
   color: #1A1B22;
 }
 
-.nav__item_black:hover{
+/**/
+/* .nav__item_black:hover{ */
+/*   border-bottom: solid 3px #1A1B22; */
+/* } */
+
+.nav__item_black-active{
   border-bottom: solid 3px #1A1B22;
 }
 
 .nav__link_black{
-  color: #1A1B22;
-}
-
-
-.nav__link_black:hover{
   color: #1A1B22;
 }
 
@@ -135,3 +140,37 @@
   border: 1px solid #D1D2D6;
 
 }
+
+@media screen and (max-width: 950px){
+  .nav{
+      height: 66px;
+    }
+
+  .nav__container{
+    display: flex; 
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    width: calc(100% - 80px);
+    align-items: center;
+  }
+
+  .nav__link{
+    font-size: 16px;
+  }
+
+  .nav__button-signin{
+    height: 40px;
+    max-width: 152px;
+    font-size: 16px;
+    line-height: 24px;
+    gap: 17px;
+  }
+
+  .nav__button-signin_login{
+    padding-left: 15px;
+    padding-right: 15px
+  }
+
+
+} 

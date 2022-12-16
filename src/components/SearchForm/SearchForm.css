@@ -56,3 +56,17 @@
 .search__button:active{
   background: #2A65CC;
 }
+
+@media screen and (max-width: 950px){
+  .search__form{
+    max-width: 100%;
+  }
+
+  .search__fieldset{
+    height: 56px;
+  }
+
+  .search__input{
+    height: 56px;
+  }
+}

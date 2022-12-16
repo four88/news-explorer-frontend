@@ -40,6 +40,30 @@
   line-height: 24px;
 }
 
+@media screen and (max-width: 950px){
+  .header{
+    max-height: 400px;
+  }
+
+  .header__container-content{
+    width: 452px;
+    margin: auto;
+    margin-top: 38px;
+  }
+
+  .header__quote{
+    font-size: 36px;
+    line-height: 111%;
+    max-width: 100%;
+  }
+
+  .header__content{
+    max-width: 100%;
+    margin-top: 16px;
+    margin-bottom: 48px;
+  }
+}
+
 
 
 

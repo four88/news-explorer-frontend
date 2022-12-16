@@ -137,7 +137,7 @@ function App() {
   let savedCards = []
   useEffect(() => {
     localStorage.setItem('savedCards', JSON.stringify(savedCards))
-  }, [])
+  }, [savedCards])
 
   const handleSaveCardClick = (card) => {
     if (isSignIn) {

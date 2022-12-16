@@ -20,11 +20,11 @@ export default function Navigation({
         <p className="nav__name">NewsExplorer</p>
         <ul className="nav__lists">
           <li className={`nav__item
-                        ${inArticleRoute ? 'nav__item_black' : ""}`}
+                        ${inArticleRoute ? 'nav__item_black' : "nav__item-active"}`}
           >
             <Link
               to='/'
-              className={`nav__link nav__link_article
+              className={`nav__link nav__link_home
                         ${inArticleRoute ? 'nav__link_black' : ""}`
               }
             >
@@ -35,7 +35,7 @@ export default function Navigation({
             isSignIn ?
               <>
                 <li className={`nav__item
-                        ${inArticleRoute ? 'nav__item_black' : ""}`}
+                        ${inArticleRoute ? 'nav__item_black nav__item_black-active' : ""}`}
                 >
                   <Link className={`nav__link nav__link_article
                         ${inArticleRoute ? 'nav__link_black' : ""}`
