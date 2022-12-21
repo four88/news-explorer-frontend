@@ -1,7 +1,11 @@
 import "./Navigation.css";
+import HambergerMenu from '../HamburgerMenu/HamburgerMenu';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import logOutIconBlack from '../../images/logout_icon.svg';
 import logOutIconWhite from '../../images/logout_icon_white.svg';
+import hamburgerWhiteIcon from '../../images/hamburger_white.svg';
+import hamburgerBlackIcon from '../../images/hamburger_black.svg';
 
 export default function Navigation({
   onClickSignIn,
@@ -11,11 +15,32 @@ export default function Navigation({
   inArticleRoute
 }) {
 
+
+  // for hamburger menu 
+  const [isHamburgerMenu, setIsHamburgerMenu] = useState(false)
+
+  const handleHamburgerMenu = () => {
+    setIsHamburgerMenu(!isHamburgerMenu)
+  }
+
+
   return (
     <nav
       className={`nav
               ${inArticleRoute ? 'nav_black' : ""}`}
     >
+      {isHamburgerMenu ? <HambergerMenu
+        onCloseMenu={handleHamburgerMenu}
+        isSignIn={isSignIn}
+        onClickSignOut={onClickSignOut}
+        onClickSignIn={onClickSignIn}
+        inArticleRoute={inArticleRoute}
+        username={username}
+        logOutIconBlack={logOutIconBlack}
+        logOutIconWhite={logOutIconWhite}
+      />
+        :
+        " "}
       <div className="nav__container">
         <p className="nav__name">NewsExplorer</p>
         <ul className="nav__lists">
@@ -67,6 +92,16 @@ export default function Navigation({
                 Sign in
               </button>
           }
+          <li className='nav__item nav__item_hamburger'>
+            <button className='nav__hamburger'
+              onClick={handleHamburgerMenu}
+            >
+              <img className='nav__hamburger_icon'
+                src={inArticleRoute ? hamburgerBlackIcon : hamburgerWhiteIcon}
+                alt='hamburger-menu'
+              />
+            </button>
+          </li>
         </ul>
       </div>
     </nav >

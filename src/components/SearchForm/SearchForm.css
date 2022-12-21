@@ -70,3 +70,18 @@
     height: 56px;
   }
 }
+
+@media screen and (max-width: 550px){
+
+  .search__form{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search__button{
+    position: relative;
+    width: 100%;
+    height: 56px;
+    margin-top: 16px;
+  }
+}

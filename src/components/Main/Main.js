@@ -13,8 +13,6 @@ export default function Main({
   onSignInNeededClick
 }) {
 
-
-
   return (
     <section className="main">
       <div className='main__container'>

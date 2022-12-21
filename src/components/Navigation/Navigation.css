@@ -141,6 +141,10 @@
 
 }
 
+.nav__item_hamburger{
+  display: none;
+}
+
 @media screen and (max-width: 950px){
   .nav{
       height: 66px;
@@ -172,5 +176,46 @@
     padding-right: 15px
   }
 
-
 } 
+
+@media screen and (max-width: 550px){
+
+  .nav{
+    height: 56px;
+  }
+
+  .nav__container{
+    width: calc(100% - 36px);
+  }
+
+  .nav__name{
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .nav__link{
+    display: none;
+  }
+
+  .nav__button-signin{
+    display: none;
+  }
+
+  .nav__item_hamburger{
+    display: flex;
+  }
+
+  .nav__hamburger{
+    background: none;
+    border: none;
+    width : 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .nav__hamburger_icon{
+    width: 100%;
+    height: 100%;
+  }
+
+}

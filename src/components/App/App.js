@@ -13,9 +13,7 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import thirdPartyApi from '../../utils/ThirdPartyApi';
 
-
 function App() {
-
   // when press 'esc' close popup
   useEffect(() => {
     const exitEsc = (e) => {
