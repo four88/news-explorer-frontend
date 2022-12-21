@@ -137,6 +137,7 @@ function App() {
     localStorage.setItem('savedCards', JSON.stringify(savedCards))
   }, [savedCards])
 
+  // for save card to save article
   const handleSaveCardClick = (card) => {
     if (isSignIn) {
       card.keyword = keyword
