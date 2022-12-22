@@ -52,6 +52,11 @@
     -webkit-box-orient: vertical;
 }
 
+.card__title_link{
+  text-decoration: none;
+  color: #1A1B22;
+}
+
 .card__content{
   width: 100%;
   height: 110px;

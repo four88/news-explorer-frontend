@@ -84,7 +84,9 @@ export default function Card({
           {formattedDate(card)}
         </p>
         <h2 className="card__title">
-          {card.title}
+          <a href={card.url} className="card__title_link" target="_blank" rel="noreferrer">
+            {card.title}
+          </a>
         </h2>
         <p className="card__content">
           {card.description}
