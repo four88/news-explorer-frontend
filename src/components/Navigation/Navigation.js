@@ -45,7 +45,7 @@ export default function Navigation({
         <p className="nav__name">NewsExplorer</p>
         <ul className="nav__lists">
           <li className={`nav__item
-                        ${inArticleRoute ? 'nav__item_black' : "nav__item-active"}`}
+                        ${inArticleRoute ? 'nav__item_black' : "nav__item--active"}`}
           >
             <Link
               to='/'
@@ -60,7 +60,7 @@ export default function Navigation({
             isSignIn ?
               <>
                 <li className={`nav__item
-                        ${inArticleRoute ? 'nav__item_black nav__item_black-active' : ""}`}
+                        ${inArticleRoute ? 'nav__item_black nav__item_black--active' : ""}`}
                 >
                   <Link className={`nav__link nav__link_article
                         ${inArticleRoute ? 'nav__link_black' : ""}`
@@ -92,7 +92,7 @@ export default function Navigation({
                 Sign in
               </button>
           }
-          <li className='nav__item nav__item_hamburger'>
+          <li className='nav__item nav__item--hamburger'>
             <button className='nav__hamburger'
               onClick={handleHamburgerMenu}
             >

@@ -30,6 +30,7 @@ export default function HambergerMenu({
             >
               <img className='hamburger__close_icon'
                 src={inArticleRoute ? closeIconBlack : closeIcon}
+                alt={inArticleRoute ? 'close-icon-black' : 'close-icon'}
               />
             </button>
           </div>

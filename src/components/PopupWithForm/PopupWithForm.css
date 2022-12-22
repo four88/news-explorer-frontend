@@ -1,4 +1,4 @@
-.signin__label{
+.popup__label{
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -7,15 +7,13 @@
   color: #2F71E5;
 }
 
-.signin__input::placeholder{
+.popup__input::placeholder{
   color: rgba(0, 0, 0, 0.2);
 }
 
-.signin__input:focus{
-  outline:none;
-}
 
-.signin__input{
+
+.popup__input{
   height: 36px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -24,7 +22,7 @@
   margin-bottom: 31px
 }
 
-.signin__input:last-of-type{
+.popup__input:last-of-type{
   margin-bottom: 0;
 }
 

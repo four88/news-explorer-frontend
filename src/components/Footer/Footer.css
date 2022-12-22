@@ -29,6 +29,10 @@
   gap: 40px;
 }
 
+.footer__list{
+  list-style: none;
+}
+
 .footer__socials{
   display: flex; 
   gap: 26px;

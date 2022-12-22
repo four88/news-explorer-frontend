@@ -20,14 +20,14 @@ export default function SearchForm({
 
   return (
     <form
-      className="search__form"
+      className="search_form"
       name="searchForm"
       onSubmit={handleSumbitSearch}
     >
-      <fieldset className="search__fieldset">
-        <label className="search__label">
+      <fieldset className="search_form__fieldset">
+        <label className="search_form__label">
           <input
-            className="search__input"
+            className="search_form__input"
             name="inputSearch"
             id="header-search"
             placeholder="Enter topic"
@@ -39,7 +39,7 @@ export default function SearchForm({
         </label>
         <button
           type="submit"
-          className="search__button"
+          className="search_form__button"
         >
           Search
         </button>
