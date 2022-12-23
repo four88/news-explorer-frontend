@@ -57,14 +57,14 @@
   margin: 0;
 }
 
-.hamburger__button_close{
+.hamburger__button-close{
   background: none;
   border: none;
   width: 24px;
   height: 24px;
 }
 
-.hamburger__close_icon{
+.hamburger__close-icon{
   width: 100%;
   height: 100%;
 }

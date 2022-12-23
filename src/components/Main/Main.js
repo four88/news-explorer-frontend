@@ -16,13 +16,13 @@ export default function Main({
   return (
     <section className="main">
       <div className='main__container'>
-        <h1 className='main__heading'>
+        <h2 className='main__heading'>
           Search result
-        </h1>
+        </h2>
         <ul className='main__cards'>
-          {cards.slice(0, showMore).map((card) => {
+          {cards.slice(0, showMore).map((card, index) => {
             return (
-              <li className='main__card'>
+              <li key={index} className='main__card'>
                 <Card
                   isSignIn={isSignIn}
                   card={card}

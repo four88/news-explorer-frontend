@@ -46,7 +46,7 @@ export default function PopupWithForm({
         className="popup__input popup__input_type_password"
         onChange={handleChange}
         placeholder="Enter Password"
-        requierd
+        required
       />
       {
         hasAccount ?

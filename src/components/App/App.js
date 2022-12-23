@@ -72,7 +72,7 @@ function App() {
   const [hasResult, setHasResult] = useState(false)
 
   // for control open and close RegistrationSuccess popup
-  const [isRegisterSuccess, setIsRegisterSuccess] = useState(true)
+  const [isRegisterSuccess, setIsRegisterSuccess] = useState(false)
 
 
   const handlePopup = () => {
@@ -173,7 +173,6 @@ function App() {
     setHasAccount(true)
     handlePopup()
     handleCloseRegisterPopup()
-
   }
 
 

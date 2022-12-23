@@ -1,6 +1,7 @@
 import './Footer.css';
 import gitIcon from '../../images/github.png';
 import facebookIcon from '../../images/facebook.png';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
 
@@ -12,9 +13,9 @@ export default function Footer() {
       <nav className="footer__container">
         <ul className='footer__links'>
           <li className='footer__list'>
-            <a href=".header" className='footer__link'>
+            <Link to="/" className='footer__link'>
               Home
-            </a>
+            </Link>
           </li>
           <li className='footer__list'>
             <a href="https://practicum.com/"
