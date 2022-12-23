@@ -38,7 +38,7 @@ export default function Card({
 
 
   return (
-    <li className='card'>
+    <div className='card'>
       {inSavedNews ?
         <>
           <span className='card__keyword'>
@@ -84,7 +84,9 @@ export default function Card({
           {formattedDate(card)}
         </p>
         <h2 className="card__title">
-          {card.title}
+          <a href={card.url} className="card__title_link" target="_blank" rel="noreferrer">
+            {card.title}
+          </a>
         </h2>
         <p className="card__content">
           {card.description}
@@ -93,6 +95,6 @@ export default function Card({
           {card.source.name}
         </p>
       </div>
-    </li>
+    </div>
   )
 }

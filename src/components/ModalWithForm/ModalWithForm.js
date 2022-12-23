@@ -7,7 +7,8 @@ export default function ModalWithForm({
   title,
   children,
   hasAccount,
-  handleHasAccount
+  handleHasAccount,
+  hasButton
 }) {
 
   return (
@@ -29,31 +30,39 @@ export default function ModalWithForm({
           <fieldset className="modal__set">
             <h2 className="modal__title">{title}</h2>
             {children}
-            <button
-              type="submit"
-              className="modal__button modal__button_save"
-            >
-              {title}
-            </button>
-            <p className="modal__detail">
-              or
-              {
-                hasAccount ?
-                  <button className="modal__link"
-                    onClick={handleHasAccount}
-                    type='button'
+            {
+              hasButton
+                ?
+                <>
+                  <button
+                    type="submit"
+                    className="modal__button"
                   >
-                    Sign up
+                    {title}
                   </button>
-                  :
-                  <button className="modal__link"
-                    onClick={handleHasAccount}
-                    type='button'
-                  >
-                    Sign in
-                  </button>
-              }
-            </p>
+                  <p className="modal__detail">
+                    or
+                    {
+                      hasAccount ?
+                        <button className="modal__link"
+                          onClick={handleHasAccount}
+                          type='button'
+                        >
+                          Sign up
+                        </button>
+                        :
+                        <button className="modal__link"
+                          onClick={handleHasAccount}
+                          type='button'
+                        >
+                          Sign in
+                        </button>
+                    }
+                  </p>
+                </>
+                :
+                ""
+            }
           </fieldset>
         </form>
       </div>

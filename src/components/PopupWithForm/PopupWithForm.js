@@ -20,8 +20,9 @@ export default function PopupWithForm({
       onSubmit={handleSubmitSignIn}
       hasAccount={hasAccount}
       handleHasAccount={handleHasAccount}
+      hasButton={true}
     >
-      <label className='signin__label'>
+      <label className='popup__label'>
         Email
       </label>
       <input
@@ -29,11 +30,12 @@ export default function PopupWithForm({
         name="email"
         id="email"
         value={account.email}
-        className="signin__input signin__input_type_email"
+        className="popup__input popup__input_type_email"
         onChange={handleChange}
         placeholder="Enter Email"
+        required
       />
-      <label className='signin__label'>
+      <label className='popup__label'>
         Password
       </label>
       <input
@@ -41,16 +43,17 @@ export default function PopupWithForm({
         name="password"
         id="password"
         value={account.password}
-        className="signin__input signin__input_type_password"
+        className="popup__input popup__input_type_password"
         onChange={handleChange}
         placeholder="Enter Password"
+        required
       />
       {
         hasAccount ?
           ""
           :
           <>
-            <label className='signin__label'>
+            <label className='popup__label'>
               Username
             </label>
             <input
@@ -58,9 +61,10 @@ export default function PopupWithForm({
               name="username"
               id="username"
               value={account.username}
-              className="signin__input signin__input_type_password"
+              className="popup__input popup__input_type_password"
               onChange={handleChange}
               placeholder="Enter Username"
+              required
             />
           </>
       }

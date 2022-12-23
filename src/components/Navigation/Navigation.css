@@ -101,11 +101,11 @@
 /*   border-bottom: solid 3px #FFFFFF; */
 /* } */
 
-.nav__item-active{
+.nav__item--active{
   border-bottom: solid 3px #FFFFFF;
 }
 
-.nav__item-active{
+.nav__item--active{
   border-bottom: solid 3px #FFFFFF;
 }
 
@@ -124,7 +124,7 @@
 /*   border-bottom: solid 3px #1A1B22; */
 /* } */
 
-.nav__item_black-active{
+.nav__item_black--active{
   border-bottom: solid 3px #1A1B22;
 }
 
@@ -141,7 +141,7 @@
 
 }
 
-.nav__item_hamburger{
+.nav__item--hamburger{
   display: none;
 }
 
@@ -201,7 +201,7 @@
     display: none;
   }
 
-  .nav__item_hamburger{
+  .nav__item--hamburger{
     display: flex;
   }
 

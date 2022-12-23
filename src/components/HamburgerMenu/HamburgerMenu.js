@@ -25,11 +25,12 @@ export default function HambergerMenu({
           `}>
           <div className='hamburger__nav_container'>
             <h1 className='hamburger__title'>NewsExplorer</h1>
-            <button className='hamburger__button_close'
+            <button className='hamburger__button-close'
               onClick={onCloseMenu}
             >
-              <img className='hamburger__close_icon'
+              <img className='hamburger__close-icon'
                 src={inArticleRoute ? closeIconBlack : closeIcon}
+                alt={inArticleRoute ? 'close-icon-black' : 'close-icon'}
               />
             </button>
           </div>

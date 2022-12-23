@@ -18,7 +18,10 @@ export default function Preloader({
         </div>
         :
         <div className='preloader__container preloader__container-notfound'>
-          <img className="preloader__notfound" src={notFoundIcon} />
+          <img className="preloader__notfound"
+            src={notFoundIcon}
+            alt='preloader-not-found'
+          />
           <h2 className='preloader__title'>
             Notthing found
           </h2>

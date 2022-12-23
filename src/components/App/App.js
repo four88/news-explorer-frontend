@@ -11,6 +11,7 @@ import { Switch, Route } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import RegistrationSuccess from '../RegistrationSuccess/RegistrationSuccess';
 import thirdPartyApi from '../../utils/ThirdPartyApi';
 
 function App() {
@@ -70,6 +71,9 @@ function App() {
   // state for show result if user not serach keyword result = false
   const [hasResult, setHasResult] = useState(false)
 
+  // for control open and close RegistrationSuccess popup
+  const [isRegisterSuccess, setIsRegisterSuccess] = useState(false)
+
 
   const handlePopup = () => {
     setPopupOpend(!isPopupOpened)
@@ -119,12 +123,17 @@ function App() {
   const handleSignOutClick = () => {
     setSignIn(false)
     localStorage.removeItem('savedCards')
+    setAccount({
+      email: "",
+      password: "",
+      username: "Elise"
+    });
   }
 
   const handleSubmitSignup = (evt) => {
     evt.preventDefault()
-    console.log(account)
-    console.log('sign up successed')
+    handlePopup()
+    setIsRegisterSuccess(true)
   }
 
   const handleShowMoreClick = () => {
@@ -133,10 +142,12 @@ function App() {
 
   // for fix localstorage bug
   let savedCards = []
+
   useEffect(() => {
     localStorage.setItem('savedCards', JSON.stringify(savedCards))
   }, [savedCards])
 
+  // for save card to save article
   const handleSaveCardClick = (card) => {
     if (isSignIn) {
       card.keyword = keyword
@@ -150,6 +161,18 @@ function App() {
     else {
       console.log('Please Sign in')
     }
+  }
+
+  // handle close register close
+  const handleCloseRegisterPopup = () => {
+    setIsRegisterSuccess(!isRegisterSuccess)
+  }
+
+  // handle click link on RegistrationSuccess popup
+  const handleLinkOnRegisterSuccess = () => {
+    setHasAccount(true)
+    handlePopup()
+    handleCloseRegisterPopup()
   }
 
 
@@ -166,6 +189,11 @@ function App() {
         handleChange={handleSignInChange}
         hasAccount={hasAccount}
         handleHasAccount={handleHasAccount}
+      />
+      <RegistrationSuccess
+        isRegisterSuccess={isRegisterSuccess}
+        onClose={handleCloseRegisterPopup}
+        handleRegistrationLink={handleLinkOnRegisterSuccess}
       />
 
 
