@@ -3,36 +3,33 @@ class MainApi {
     this._baseUrl = baseUrl;
   }
 
-
   _checkResponse(res) {
     if (res.ok) {
-      return res.json()
+      return res.json();
     }
-    return Promise.reject(`Error: ${res.statusText}`)
+    return Promise.reject(`Error: ${res.statusText}`);
   }
 
   register(email, password, name) {
     return fetch(`${this._baseUrl}/signup`, {
       method: "POST",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password, name })
-    })
-      .then((res) => this._checkResponse(res))
+      body: JSON.stringify({ email, password, name }),
+    }).then((res) => this._checkResponse(res));
   }
 
   login(email, password) {
     return fetch(`${this._baseUrl}/signin`, {
       method: "POST",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password })
-    })
-      .then((res) => this._checkResponse(res))
+      body: JSON.stringify({ email, password }),
+    }).then((res) => this._checkResponse(res));
   }
 
   checkUserToken(token) {
@@ -40,7 +37,7 @@ class MainApi {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
     }).then((res) => this._checkResponse(res));
@@ -51,10 +48,10 @@ class MainApi {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
-    }).then((res) => this._checkResponse(res))
+    }).then((res) => this._checkResponse(res));
   }
 
   deleteSaveArticle(articleId, token) {
@@ -62,21 +59,19 @@ class MainApi {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
-        Authorization: `Bearer ${token}`
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
       },
-    }).then((res) => this._checkResponse(res))
+    }).then((res) => this._checkResponse(res));
   }
 
-  saveArticle({
-    keyword, title, text, date, source, link, image,
-  }, token) {
+  saveArticle({ keyword, title, text, date, source, link, image }, token) {
     return fetch(`${this._baseUrl}/article`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
-        Authorization: `Bearer ${token}`
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         keyword,
@@ -85,15 +80,14 @@ class MainApi {
         date,
         source,
         link,
-        image
-      })
-    }).then((res) => this._checkResponse(res))
+        image,
+      }),
+    }).then((res) => this._checkResponse(res));
   }
-
 }
 
 const mainApi = new MainApi({
-  baseUrl: `https://api.news-project.students.nomoredomainssbs.ru`
-})
+  baseUrl: `https://api.news-project.students.nomoredomainssbs.ru`,
+});
 
 export default mainApi;

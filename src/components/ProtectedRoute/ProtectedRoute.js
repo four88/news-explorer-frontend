@@ -1,4 +1,4 @@
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Redirect } from "react-router-dom";
 
 export default function ProtectedRoute({
   isSignIn,
@@ -7,14 +7,6 @@ export default function ProtectedRoute({
   ...props
 }) {
   return (
-    <Route {...props}>
-      {
-        isSignIn
-          ?
-          children
-          :
-          <Redirect to={toPath} />
-      }
-    </Route>
-  )
+    <Route {...props}>{isSignIn ? children : <Redirect to={toPath} />}</Route>
+  );
 }

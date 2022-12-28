@@ -1,6 +1,6 @@
-import './Main.css';
-import Card from '../Card/Card.js';
-import { useState, useEffect } from 'react';
+import "./Main.css";
+import Card from "../Card/Card.js";
+import { useState, useEffect } from "react";
 
 export default function Main({
   cards,
@@ -14,18 +14,14 @@ export default function Main({
   isSavedButton,
   savedCards,
 }) {
-
-
   return (
     <section className="main">
-      <div className='main__container'>
-        <h2 className='main__heading'>
-          Search result
-        </h2>
-        <ul className='main__cards'>
+      <div className="main__container">
+        <h2 className="main__heading">Search result</h2>
+        <ul className="main__cards">
           {cards.slice(0, showMore).map((card, index) => {
             return (
-              <li key={index} className='main__card'>
+              <li key={index} className="main__card">
                 <Card
                   isSignIn={isSignIn}
                   card={card}
@@ -38,19 +34,15 @@ export default function Main({
                   savedCards={savedCards}
                 />
               </li>
-            )
+            );
           })}
-
         </ul>
-        {showMore <= 100 &&
-          <button
-            className='main__more-button'
-            onClick={handleShowMoreClick}
-          >
+        {showMore <= 100 && (
+          <button className="main__more-button" onClick={handleShowMoreClick}>
             Show more
           </button>
-        }
+        )}
       </div>
     </section>
-  )
+  );
 }
