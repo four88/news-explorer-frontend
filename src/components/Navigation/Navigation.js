@@ -1,7 +1,8 @@
 import "./Navigation.css";
 import HambergerMenu from '../HamburgerMenu/HamburgerMenu';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useState, useContext } from 'react';
 import logOutIconBlack from '../../images/logout_icon.svg';
 import logOutIconWhite from '../../images/logout_icon_white.svg';
 import hamburgerWhiteIcon from '../../images/hamburger_white.svg';
@@ -11,13 +12,14 @@ export default function Navigation({
   onClickSignIn,
   onClickSignOut,
   isSignIn,
-  username,
   inArticleRoute
 }) {
 
 
   // for hamburger menu 
   const [isHamburgerMenu, setIsHamburgerMenu] = useState(false)
+  // account info
+  const [account, setAccount] = useContext(CurrentUserContext);
 
   const handleHamburgerMenu = () => {
     setIsHamburgerMenu(!isHamburgerMenu)
@@ -35,7 +37,6 @@ export default function Navigation({
         onClickSignOut={onClickSignOut}
         onClickSignIn={onClickSignIn}
         inArticleRoute={inArticleRoute}
-        username={username}
         logOutIconBlack={logOutIconBlack}
         logOutIconWhite={logOutIconWhite}
       />
@@ -77,7 +78,7 @@ export default function Navigation({
                   type='button'
                   onClick={onClickSignOut}
                 >
-                  {username}
+                  {account.name}
                   <img src={inArticleRoute ? logOutIconBlack : logOutIconWhite}
                     alt="logout-icon-white"
                   />

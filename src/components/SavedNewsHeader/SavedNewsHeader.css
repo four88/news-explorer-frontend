@@ -29,7 +29,9 @@
   align-items: center;
 }
 
-
+.saved_news__card{
+  list-style: none;
+}
 
 .saved_news__title{
   padding-top: 40px;

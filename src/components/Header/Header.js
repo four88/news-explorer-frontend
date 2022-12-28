@@ -7,7 +7,6 @@ export default function Header({
   onClickSignIn,
   onClickSignOut,
   isSignIn,
-  username,
   inArticleRoute
 }) {
 
@@ -17,7 +16,6 @@ export default function Header({
         onClickSignIn={onClickSignIn}
         onClickSignOut={onClickSignOut}
         isSignIn={isSignIn}
-        username={username}
         inArticleRoute={inArticleRoute}
       />
       <div className="header__container-content">

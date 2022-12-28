@@ -1,30 +1,58 @@
 import './Card.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import mainApi from '../../utils/MainApi';
+import { CurrentKeywordContext } from '../../contexts/CurrentKeywordContext';
+
 
 export default function Card({
   card,
-  onSaveClick,
   inSavedNews,
-  onDeleteClick,
   isSignIn,
-  onSignInNeededClick
+  onSignInNeededClick,
+
 }) {
 
-  const [isSaved, setIsSaved] = useState()
 
-  const handleSaveClick = async () => {
-    await onSaveClick(card)
-    setIsSaved(!isSaved)
+  // for keyword from context
+  const [keyword, setKeyword] = useContext(CurrentKeywordContext);
+  // for check card is save or not  
+  const [isSavedButton, setIsSavedButton] = useState(false);
 
+
+  const handleSaveClick = () => {
+    if (isSignIn) {
+      card.keyword = keyword
+      mainApi.saveArticle({
+        keyword: card.keyword,
+        title: card.title,
+        text: card.description,
+        date: card.publishedAt,
+        source: card.source.name,
+        link: card.url,
+        image: card.urlToImage
+      }, localStorage.getItem('token'))
+        .then((res) => {
+          console.log(res)
+          setIsSavedButton(true);
+        })
+        .catch((err) => console.log(err))
+    }
+    else {
+      console.log('Please Sign in')
+    }
   }
 
   const handleDeleteClick = () => {
-    onDeleteClick(card)
+    if (card._id) {
+      mainApi.deleteSaveArticle(card._id, localStorage.getItem('token'))
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+    }
   }
 
 
   const formattedDate = (card) => {
-    const cardDate = card.publishedAt;
+    const cardDate = card.publishedAt || card.date;
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const noTime = cardDate.slice(0, 10);
     const date = new Date(noTime);
@@ -51,7 +79,7 @@ export default function Card({
         </>
         :
         isSignIn ?
-          isSaved ?
+          isSavedButton ?
             <button className="card__save-button_marked"
             >
             </button>
@@ -76,7 +104,7 @@ export default function Card({
       }
       <img
         alt={card.title}
-        src={card.urlToImage}
+        src={card.urlToImage || card.image}
         className="card__img"
       />
       <div className="card__content-box">
@@ -84,15 +112,15 @@ export default function Card({
           {formattedDate(card)}
         </p>
         <h2 className="card__title">
-          <a href={card.url} className="card__title_link" target="_blank" rel="noreferrer">
+          <a href={card.url || card.link} className="card__title_link" target="_blank" rel="noreferrer">
             {card.title}
           </a>
         </h2>
         <p className="card__content">
-          {card.description}
+          {card.description || card.text}
         </p>
         <p className="card__source">
-          {card.source.name}
+          {card.source.name || card.source}
         </p>
       </div>
     </div>

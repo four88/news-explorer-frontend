@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { CurrentKeywordContext } from '../../contexts/CurrentKeywordContext';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import About from '../About/About';
 import Footer from '../Footer/Footer';
@@ -13,6 +14,7 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import RegistrationSuccess from '../RegistrationSuccess/RegistrationSuccess';
 import thirdPartyApi from '../../utils/ThirdPartyApi';
+import mainApi from '../../utils/MainApi';
 
 function App() {
   // when press 'esc' close popup
@@ -53,7 +55,7 @@ function App() {
   const [account, setAccount] = useState({
     email: "",
     password: "",
-    username: "Elise"
+    name: ""
   })
 
   // for sign in state if user already sign in set to true 
@@ -74,6 +76,8 @@ function App() {
   // for control open and close RegistrationSuccess popup
   const [isRegisterSuccess, setIsRegisterSuccess] = useState(false)
 
+  // for contain cards from save article 
+  const [savedCards, setSavedCards] = useState([])
 
   const handlePopup = () => {
     setPopupOpend(!isPopupOpened)
@@ -115,55 +119,50 @@ function App() {
 
   const handleSubmitSignIn = (evt) => {
     evt.preventDefault()
-    setSignIn(true)
-    console.log(account)
-    handlePopup()
-  }
+    if (!account.email || !account.password) {
+      return;
+    }
 
-  const handleSignOutClick = () => {
-    setSignIn(false)
-    localStorage.removeItem('savedCards')
-    setAccount({
-      email: "",
-      password: "",
-      username: "Elise"
-    });
+    mainApi.login(account.email, account.password)
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          handleTokenCheck(data.token)
+          setSignIn(true)
+          handlePopup()
+        }
+      })
+      .catch((err) => console.log(err));
+
   }
 
   const handleSubmitSignup = (evt) => {
     evt.preventDefault()
-    handlePopup()
-    setIsRegisterSuccess(true)
+    console.log(account)
+    mainApi.register(account.email, account.password, account.name)
+      .then((res) => {
+        if (res.data.email) {
+          handlePopup()
+          setIsRegisterSuccess(true)
+        }
+      })
+      .catch((err) => console.log(err))
+  }
+
+  const handleSignOutClick = () => {
+    setSignIn(false)
+    localStorage.removeItem('token')
+    setAccount({
+      email: "",
+      password: "",
+      name: ""
+    });
   }
 
   const handleShowMoreClick = () => {
     setShowMore(showMore + 3)
   }
 
-  // for fix localstorage bug
-  let savedCards = []
-
-  useEffect(() => {
-    localStorage.setItem('savedCards', JSON.stringify(savedCards))
-  }, [savedCards])
-
-  // for save card to save article
-  const handleSaveCardClick = (card) => {
-    if (isSignIn) {
-      card.keyword = keyword
-      // read from local if cannot get any card set empyty list
-      savedCards = JSON.parse(localStorage.getItem('savedCards'));
-      // add card to list
-      savedCards.push(card)
-      // set to localstorage
-      localStorage.setItem('savedCards', JSON.stringify(savedCards))
-    }
-    else {
-      console.log('Please Sign in')
-    }
-  }
-
-  // handle close register close
   const handleCloseRegisterPopup = () => {
     setIsRegisterSuccess(!isRegisterSuccess)
   }
@@ -175,86 +174,112 @@ function App() {
     handleCloseRegisterPopup()
   }
 
+  // handle user token (checking user has token or not )
+  const handleTokenCheck = (token) => {
+    const localStorageToken = localStorage.getItem('token');
+
+    if (token || localStorageToken) {
+      setSignIn(true)
+      mainApi.checkUserToken(token || localStorageToken)
+        .then((res) => {
+          if (res) {
+            mainApi.getSaveArticle(token || localStorageToken)
+              .then((res) => {
+                setSavedCards(res.data)
+              })
+              .catch((err) => console.log(err))
+            setAccount(res.data)
+          }
+        })
+        .catch((err) => console.log(err))
+    };
+  };
 
 
+  //useEffect to fetch api data of user and set to CurrentUserContext value(currentUser)
+  //
+  // if user already login allow user to pass throught to homepage by checking token
+  useEffect(() => {
+    handleTokenCheck();
+  }, [savedCards]);
 
 
   return (
-    <CurrentKeywordContext.Provider value={[keyword, setKeyword]}>
-      <PopupWithForm
-        isPopupOpened={isPopupOpened}
-        onClose={handlePopup}
-        handleSubmitSignIn={hasAccount ? handleSubmitSignIn : handleSubmitSignup}
-        account={account}
-        handleChange={handleSignInChange}
-        hasAccount={hasAccount}
-        handleHasAccount={handleHasAccount}
-      />
-      <RegistrationSuccess
-        isRegisterSuccess={isRegisterSuccess}
-        onClose={handleCloseRegisterPopup}
-        handleRegistrationLink={handleLinkOnRegisterSuccess}
-      />
+    <CurrentUserContext.Provider value={[account, setAccount]}>
+      <CurrentKeywordContext.Provider value={[keyword, setKeyword]}>
+        <PopupWithForm
+          isPopupOpened={isPopupOpened}
+          onClose={handlePopup}
+          handleSubmitSignIn={hasAccount ? handleSubmitSignIn : handleSubmitSignup}
+          handleChange={handleSignInChange}
+          hasAccount={hasAccount}
+          handleHasAccount={handleHasAccount}
+        />
+        <RegistrationSuccess
+          isRegisterSuccess={isRegisterSuccess}
+          onClose={handleCloseRegisterPopup}
+          handleRegistrationLink={handleLinkOnRegisterSuccess}
+        />
 
 
-      <Switch>
-        <Route path="/" exact>
-          <Header
-            username={account.username}
-            onSearchUpdate={handleSearchUpdate}
-            onClickSignIn={handleSignInClick}
-            onClickSignOut={handleSignOutClick}
-            isSignIn={isSignIn}
-            inArticleRoute={false}
-          />
+        <Switch>
+          <Route path="/" exact>
+            <Header
+              onSearchUpdate={handleSearchUpdate}
+              onClickSignIn={handleSignInClick}
+              onClickSignOut={handleSignOutClick}
+              isSignIn={isSignIn}
+              inArticleRoute={false}
+            />
 
-          {hasResult ?
-            isLoading
-              ?
-              <Preloader
-                hasResult={true}
-              />
-              : cards.length > 0
+            {hasResult ?
+              isLoading
                 ?
-                <Main
-                  isSignIn={isSignIn}
-                  cards={cards}
-                  inSavedNews={false}
-                  onSaveClick={handleSaveCardClick}
-                  showMore={showMore}
-                  handleShowMoreClick={handleShowMoreClick}
-                  onSignInNeededClick={handleSignInNeededCardClick}
+                <Preloader
+                  hasResult={true}
                 />
-                :
-                <Preloader hasResult={false} />
-            :
-            ""
+                : cards.length > 0
+                  ?
+                  <Main
+                    isSignIn={isSignIn}
+                    cards={cards}
+                    inSavedNews={false}
+                    showMore={showMore}
+                    handleShowMoreClick={handleShowMoreClick}
+                    onSignInNeededClick={handleSignInNeededCardClick}
+                  />
+                  :
+                  <Preloader hasResult={false} />
+              :
+              ""
 
-          }
-          <About />
-          <Footer />
-        </Route>
+            }
+            <About />
+            <Footer />
+          </Route>
 
-        <ProtectedRoute
-          path="/saved-news"
-          isSignIn={isSignIn}
-          toPath='/'
-        >
-          <Navigation
-            onClickSignIn={handleSignInClick}
+          <ProtectedRoute
+            path="/saved-news"
             isSignIn={isSignIn}
-            onClickSignOut={handleSignOutClick}
-            username={account.username}
-            inArticleRoute={true}
-          />
-          <SavedNewsHeader
-            username={account.username}
-            inSavedNews={true}
-          />
-          <Footer />
-        </ProtectedRoute>
-      </Switch>
-    </CurrentKeywordContext.Provider>
+            toPath='/'
+          >
+            <Navigation
+              onClickSignIn={handleSignInClick}
+              isSignIn={isSignIn}
+              onClickSignOut={handleSignOutClick}
+              username={account.username}
+              inArticleRoute={true}
+            />
+            <SavedNewsHeader
+              username={account.username}
+              inSavedNews={true}
+              savedCards={savedCards}
+            />
+            <Footer />
+          </ProtectedRoute>
+        </Switch>
+      </CurrentKeywordContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 

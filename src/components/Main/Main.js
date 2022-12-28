@@ -10,7 +10,9 @@ export default function Main({
   showMore,
   handleShowMoreClick,
   isSignIn,
-  onSignInNeededClick
+  onSignInNeededClick,
+  isSavedButton,
+  checkCardIsSaved
 }) {
 
   return (
@@ -31,6 +33,7 @@ export default function Main({
                   onDeleteClick={onDeleteClick}
                   isSaved={false}
                   onSignInNeededClick={onSignInNeededClick}
+                  isSavedButton={isSavedButton}
                 />
               </li>
             )

@@ -10,7 +10,6 @@ export default function SearchForm({
 
   const handleSearchChange = (evt) => {
     setKeyword(evt.target.value)
-    console.log(keyword)
   }
 
   const handleSumbitSearch = (evt) => {

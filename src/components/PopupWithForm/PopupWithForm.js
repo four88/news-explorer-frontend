@@ -1,15 +1,19 @@
+import { useContext } from 'react';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './PopupWithForm.css';
 
 export default function PopupWithForm({
   isPopupOpened,
   onClose,
   handleSubmitSignIn,
-  account,
   handleChange,
   hasAccount,
   handleHasAccount
 }) {
+
+  const [account, setAccount] = useContext(CurrentUserContext);
+
 
 
   return (
@@ -29,7 +33,7 @@ export default function PopupWithForm({
         type="email"
         name="email"
         id="email"
-        value={account.email}
+        value={account.email || ""}
         className="popup__input popup__input_type_email"
         onChange={handleChange}
         placeholder="Enter Email"
@@ -42,7 +46,7 @@ export default function PopupWithForm({
         type="password"
         name="password"
         id="password"
-        value={account.password}
+        value={account.password || ""}
         className="popup__input popup__input_type_password"
         onChange={handleChange}
         placeholder="Enter Password"
@@ -58,9 +62,9 @@ export default function PopupWithForm({
             </label>
             <input
               type="string"
-              name="username"
-              id="username"
-              value={account.username}
+              name="name"
+              id="name"
+              value={account.name || ''}
               className="popup__input popup__input_type_password"
               onChange={handleChange}
               placeholder="Enter Username"

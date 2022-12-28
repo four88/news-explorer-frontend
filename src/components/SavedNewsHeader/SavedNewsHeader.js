@@ -1,43 +1,38 @@
 import './SavedNewsHeader.css';
 import Card from '../Card/Card';
 import Preloader from '../Preloader/Preloader';
-import { useState, useEffect } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useState, useEffect, useContext } from 'react';
 
 export default function SavedNewsHeader({
-  username,
   inSavedNews,
+  savedCards,
 }) {
 
-  const [savedCards, setSavedCards] = useState([])
-
-  useEffect(() => {
-    setSavedCards(JSON.parse(localStorage.getItem('savedCards')))
-  }, [])
-  console.log(savedCards)
-
-  // for delete saved news 
-  const handleDeleteCardClick = (card) => {
-    const index = savedCards.indexOf(card)
-    console.log(savedCards)
-    savedCards.splice(index, 1)
-    localStorage.setItem('savedCards', JSON.stringify(savedCards))
-    setSavedCards(JSON.parse(localStorage.getItem('savedCards')))
-  }
+  const [username, setUsername] = useContext(CurrentUserContext)
 
   // find the unique keyword from saved news return list of unique keyword
-  const findUniqueKeyword = (cards) => {
-    const keywords = []
-    for (let i = 0; i < cards.length; i++) {
-      keywords.push(cards[i].keyword)
-    }
-    let unique = [...new Set(keywords)];
-    return unique
+  // in descending order
+  function sortKeywords(cards) {
+    const keywordCounts = {};
+    cards.forEach((card) => {
+      keywordCounts[card.keyword] = keywordCounts[card.keyword]
+        ? keywordCounts[card.keyword] + 1
+        : 1;
+    });
+    const keywordsSorted = Object.keys(keywordCounts).sort(
+      (firstKeyword, secondKeyword) => {
+        return keywordCounts[secondKeyword] - keywordCounts[firstKeyword];
+      }
+    );
+    return keywordsSorted;
   }
+
 
 
   // show span how many keyword user have 
   const listSpanKeyword = () => {
-    const unique = findUniqueKeyword(savedCards)
+    const unique = sortKeywords(savedCards)
     if (unique.length <= 2) {
       if (unique.length === 0) {
         return ' Not found any saved news'
@@ -54,6 +49,16 @@ export default function SavedNewsHeader({
     }
   }
 
+  // sort card by keyword
+  const sortCardsByKeyword = (cards) => {
+    const sortedKeywords = sortKeywords(cards);
+    cards.sort(
+      (firstCard, secondCard) =>
+        sortedKeywords.indexOf(firstCard.keyword) -
+        sortedKeywords.indexOf(secondCard.keyword)
+    );
+    return cards;
+  };
 
   return (
     <>
@@ -64,7 +69,7 @@ export default function SavedNewsHeader({
               Saved article
             </p>
             <h2 className='saved_news__info'>
-              {`${username}, you have ${savedCards.length} saved articles`}
+              {`${username.name}, you have ${savedCards.length} saved articles`}
             </h2>
             <p className='saved_news__keyword'>
               By keywords:
@@ -77,17 +82,18 @@ export default function SavedNewsHeader({
         <main className="saved_news__main">
           {savedCards.length > 0
             ?
-            < div className='saved_news__container saved_news__container-main'>
-              {savedCards.map((card) => {
+            < ul className='saved_news__container saved_news__container-main'>
+              {sortCardsByKeyword(savedCards).map((card, index) => {
                 return (
-                  <Card
-                    card={card}
-                    inSavedNews={inSavedNews}
-                    onDeleteClick={handleDeleteCardClick}
-                  />
+                  <li key={index} className='saved_news__card'>
+                    <Card
+                      card={card}
+                      inSavedNews={inSavedNews}
+                    />
+                  </li>
                 )
               })}
-            </div>
+            </ul>
             :
             <div className='saved_news__container saved_news__container-height'>
               <Preloader

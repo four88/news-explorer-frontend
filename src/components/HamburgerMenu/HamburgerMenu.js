@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './HamburgerMenu.css';
 import closeIcon from '../../images/Close_icon.svg';
 import closeIconBlack from '../../images/Close_icon_black.svg';
@@ -8,11 +10,13 @@ export default function HambergerMenu({
   onClickSignOut,
   onClickSignIn,
   inArticleRoute,
-  username,
   onCloseMenu,
   logOutIconWhite,
   logOutIconBlack
 }) {
+
+  // account info
+  const [account, setAccount] = useContext(CurrentUserContext);
 
   return (
     <section className='hamburger'>
@@ -67,7 +71,7 @@ export default function HambergerMenu({
                 type='button'
                 onClick={onClickSignOut}
               >
-                {username}
+                {account.name}
                 <img src={inArticleRoute ? logOutIconBlack : logOutIconWhite}
                   alt="logout-icon-white"
                 />
