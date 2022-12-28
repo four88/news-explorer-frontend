@@ -12,8 +12,9 @@ export default function Main({
   isSignIn,
   onSignInNeededClick,
   isSavedButton,
-  checkCardIsSaved
+  savedCards,
 }) {
+
 
   return (
     <section className="main">
@@ -34,6 +35,7 @@ export default function Main({
                   isSaved={false}
                   onSignInNeededClick={onSignInNeededClick}
                   isSavedButton={isSavedButton}
+                  savedCards={savedCards}
                 />
               </li>
             )

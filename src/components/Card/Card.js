@@ -3,12 +3,25 @@ import { useState, useContext } from 'react';
 import mainApi from '../../utils/MainApi';
 import { CurrentKeywordContext } from '../../contexts/CurrentKeywordContext';
 
+const checkIfSaved = (card, savedCards) => {
+  let found = false;
+  if (savedCards.length > 0) {
+    savedCards.forEach((savedCard) => {
+      if (savedCard.link === card.url) {
+        found = true;
+      }
+    });
+    return found;
+  }
+  return false;
+}
 
 export default function Card({
   card,
   inSavedNews,
   isSignIn,
   onSignInNeededClick,
+  savedCards
 
 }) {
 
@@ -16,8 +29,7 @@ export default function Card({
   // for keyword from context
   const [keyword, setKeyword] = useContext(CurrentKeywordContext);
   // for check card is save or not  
-  const [isSavedButton, setIsSavedButton] = useState(false);
-
+  const [isSavedButton, setIsSavedButton] = useState(checkIfSaved(card, savedCards));
 
   const handleSaveClick = () => {
     if (isSignIn) {

@@ -89,6 +89,7 @@ export default function SavedNewsHeader({
                     <Card
                       card={card}
                       inSavedNews={inSavedNews}
+                      savedCards={savedCards}
                     />
                   </li>
                 )

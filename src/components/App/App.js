@@ -85,6 +85,8 @@ function App() {
   const handleSignInNeededCardClick = () => {
     handlePopup()
   }
+
+
   const handleSearchUpdate = () => {
     // send keyword to api
     setHasResult(true)
@@ -247,6 +249,7 @@ function App() {
                     showMore={showMore}
                     handleShowMoreClick={handleShowMoreClick}
                     onSignInNeededClick={handleSignInNeededCardClick}
+                    savedCards={savedCards}
                   />
                   :
                   <Preloader hasResult={false} />
