@@ -22,7 +22,9 @@ export default function Card({
   isSignIn,
   onSignInNeededClick,
   savedCards,
+  onDeleteClick,
 }) {
+  // card = checkForMarkId(card, savedCards);
   // for keyword from context
   const [keyword, setKeyword] = useContext(CurrentKeywordContext);
   // for check card is save or not
@@ -49,6 +51,8 @@ export default function Card({
         .then((res) => {
           console.log(res);
           setIsSavedButton(true);
+          // set _id to card that user click for handle unmark
+          card._id = res.data._id;
         })
         .catch((err) => console.log(err));
     } else {
@@ -57,12 +61,7 @@ export default function Card({
   };
 
   const handleDeleteClick = () => {
-    if (card._id) {
-      mainApi
-        .deleteSaveArticle(card._id, localStorage.getItem("token"))
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
-    }
+    onDeleteClick(card._id, setIsSavedButton);
   };
 
   const formattedDate = (card) => {
@@ -83,9 +82,8 @@ export default function Card({
     ];
     const noTime = cardDate.slice(0, 10);
     const date = new Date(noTime);
-    const formatDate = `${
-      months[date.getMonth()]
-    } ${date.getDate()},  ${date.getFullYear()}`;
+    const formatDate = `${months[date.getMonth()]
+      } ${date.getDate()},  ${date.getFullYear()}`;
     return formatDate;
   };
 
@@ -101,11 +99,16 @@ export default function Card({
           <button
             className="card__delete-button"
             onClick={handleDeleteClick}
-          ></button>
+          >
+            <span className="card__signin">Remove from saved</span>
+          </button>
         </>
       ) : isSignIn ? (
         isSavedButton ? (
-          <button className="card__save-button_marked"></button>
+          <button
+            className="card__save-button_marked"
+            onClick={handleDeleteClick}
+          ></button>
         ) : (
           <>
             <button

@@ -28,6 +28,7 @@ export default function SearchForm({ onSearchUpdate }) {
             id="header-search"
             placeholder="Enter topic"
             minLength="2"
+            value={keyword || ""}
             maxLength="40"
             onChange={handleSearchChange}
             required

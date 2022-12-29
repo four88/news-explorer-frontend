@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./ModalWithForm.css";
 export default function ModalWithForm({
   name,
@@ -13,6 +14,31 @@ export default function ModalWithForm({
   signinError,
   signupError,
 }) {
+  // when press 'esc' close popup
+  useEffect(() => {
+    const exitEsc = (e) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    document.addEventListener("keydown", exitEsc);
+
+    return () => document.removeEventListener("keydown", exitEsc);
+  }, [isOpen, onClose]);
+
+  // when click on modal then close popup
+  useEffect(() => {
+    if (isOpen) {
+      document
+        .querySelector(".modal_type_opened")
+        .addEventListener("click", (evt) => {
+          if (evt.target.classList.contains("modal")) {
+            onClose();
+          }
+        });
+    }
+  });
+
   return (
     <div className={`modal ${name} ${isOpen ? "modal_type_opened" : ""}`}>
       <div className="modal__container">

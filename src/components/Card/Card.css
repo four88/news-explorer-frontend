@@ -110,9 +110,8 @@
   top: 24px;
   right: 24px;
   background-position: center;
+  cursor: pointer;
   transition-duration: 0.3s;
-  cursor: none;
-  pointer-events: none;
 }
 
 .card__save-button:hover {
@@ -167,6 +166,13 @@
   font-size: 12px;
   line-height: 14px;
 }
+
+.card__delete-button:hover .card__signin {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
 
 .card__save-button_signin:hover .card__signin {
   display: flex;
