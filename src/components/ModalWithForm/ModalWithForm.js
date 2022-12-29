@@ -16,6 +16,7 @@ export default function ModalWithForm({
 }) {
   // when press 'esc' close popup
   useEffect(() => {
+    if (!isOpen) return;
     const exitEsc = (e) => {
       if (e.key === "Escape") {
         onClose();
@@ -27,20 +28,19 @@ export default function ModalWithForm({
   }, [isOpen, onClose]);
 
   // when click on modal then close popup
-  useEffect(() => {
-    if (isOpen) {
-      document
-        .querySelector(".modal_type_opened")
-        .addEventListener("click", (evt) => {
-          if (evt.target.classList.contains("modal")) {
-            onClose();
-          }
-        });
+
+  // here is the overlay handler
+  const handleOverlay = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
     }
-  });
+  };
 
   return (
-    <div className={`modal ${name} ${isOpen ? "modal_type_opened" : ""}`}>
+    <div
+      className={`modal ${name} ${isOpen ? "modal_type_opened" : ""}`}
+      onClick={handleOverlay}
+    >
       <div className="modal__container">
         <button
           type="button"

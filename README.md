@@ -22,4 +22,3 @@ This project was built using the following tools and technologies:
 ## Deployment
 
 This project is deployed on Google Cloud using a Linux server for both the frontend and backend. The live project can be accessed at the following link: [News Explorer](https://news-project.students.nomoredomainssbs.ru/)
-

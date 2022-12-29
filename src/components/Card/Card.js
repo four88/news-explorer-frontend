@@ -79,8 +79,9 @@ export default function Card({
     ];
     const noTime = cardDate.slice(0, 10);
     const date = new Date(noTime);
-    const formatDate = `${months[date.getMonth()]
-      } ${date.getDate()},  ${date.getFullYear()}`;
+    const formatDate = `${
+      months[date.getMonth()]
+    } ${date.getDate()},  ${date.getFullYear()}`;
     return formatDate;
   };
 
@@ -93,10 +94,7 @@ export default function Card({
       {inSavedNews ? (
         <>
           <span className="card__keyword">{card.keyword}</span>
-          <button
-            className="card__delete-button"
-            onClick={handleDeleteClick}
-          >
+          <button className="card__delete-button" onClick={handleDeleteClick}>
             <span className="card__signin">Remove from saved</span>
           </button>
         </>

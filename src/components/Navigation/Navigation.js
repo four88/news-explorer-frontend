@@ -46,10 +46,11 @@ export default function Navigation({
         <ul className="nav__lists">
           <li
             className={`nav__item
-                        ${inArticleRoute
-                ? "nav__item_black"
-                : "nav__item--active"
-              }`}
+                        ${
+                          inArticleRoute
+                            ? "nav__item_black"
+                            : "nav__item--active"
+                        }`}
           >
             <Link
               to="/"
@@ -63,10 +64,11 @@ export default function Navigation({
             <>
               <li
                 className={`nav__item
-                        ${inArticleRoute
-                    ? "nav__item_black nav__item_black--active"
-                    : ""
-                  }`}
+                        ${
+                          inArticleRoute
+                            ? "nav__item_black nav__item_black--active"
+                            : ""
+                        }`}
               >
                 <Link
                   className={`nav__link nav__link_article
