@@ -1,22 +1,18 @@
-import './SearchForm.css';
-import { useContext } from 'react';
-import { CurrentKeywordContext } from '../../contexts/CurrentKeywordContext';
+import "./SearchForm.css";
+import { useContext } from "react";
+import { CurrentKeywordContext } from "../../contexts/CurrentKeywordContext";
 
-export default function SearchForm({
-  onSearchUpdate
-}) {
-
+export default function SearchForm({ onSearchUpdate }) {
   const [keyword, setKeyword] = useContext(CurrentKeywordContext);
 
   const handleSearchChange = (evt) => {
-    setKeyword(evt.target.value)
-    console.log(keyword)
-  }
+    setKeyword(evt.target.value);
+  };
 
   const handleSumbitSearch = (evt) => {
     evt.preventDefault();
-    onSearchUpdate(keyword)
-  }
+    onSearchUpdate(keyword);
+  };
 
   return (
     <form
@@ -32,18 +28,16 @@ export default function SearchForm({
             id="header-search"
             placeholder="Enter topic"
             minLength="2"
+            value={keyword || ""}
             maxLength="40"
             onChange={handleSearchChange}
             required
           />
         </label>
-        <button
-          type="submit"
-          className="search-form__button"
-        >
+        <button type="submit" className="search-form__button">
           Search
         </button>
       </fieldset>
     </form>
-  )
+  );
 }

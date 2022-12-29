@@ -1,21 +1,20 @@
-.hamburger{
+.hamburger {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
   bottom: 0;
-  display : flex;
+  display: flex;
   z-index: 2;
-  flex-direction : column;
+  flex-direction: column;
   align-items: flex-start;
 }
 
-
-.hamburger__nav{
+.hamburger__nav {
   width: 100%;
   height: auto;
-  background: #1A1B22;
+  background: #1a1b22;
   opacity: 1;
   z-index: 1;
   display: flex;
@@ -23,12 +22,11 @@
   align-items: center;
 }
 
-
-.hamburger__nav_white{
+.hamburger__nav_white {
   background: white;
 }
 
-.hamburger__nav_header{
+.hamburger__nav_header {
   height: 56px;
   width: 100%;
   display: flex;
@@ -37,19 +35,19 @@
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
 }
 
-.hamburger__nav_header_black{
-  border-bottom: 2px solid #D1D2D6;
+.hamburger__nav_header_black {
+  border-bottom: 2px solid #d1d2d6;
 }
 
-.hamburger__nav_container{
+.hamburger__nav_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: calc(100% - 36px);
 }
 
-.hamburger__title{
-  font-family: 'Roboto Slab';
+.hamburger__title {
+  font-family: "Roboto Slab";
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -57,33 +55,33 @@
   margin: 0;
 }
 
-.hamburger__button-close{
+.hamburger__button-close {
   background: none;
   border: none;
   width: 24px;
   height: 24px;
 }
 
-.hamburger__close-icon{
+.hamburger__close-icon {
   width: 100%;
   height: 100%;
 }
 
-.hamburger__list{
+.hamburger__list {
   width: calc(100% - 36px);
   display: flex;
   flex-direction: column;
   margin-top: 16px;
 }
 
-.hamburger__item{
+.hamburger__item {
   list-style: none;
   height: 56px;
   display: flex;
   align-items: center;
 }
 
-.hamburger__button-signin{
+.hamburger__button-signin {
   width: 100%;
   height: 56px;
   border: 1px solid white;
@@ -94,25 +92,24 @@
   margin-top: 22px;
 }
 
-.hamburger__link{
+.hamburger__link {
   text-decoration: none;
   color: white;
   cursor: pointer;
 }
 
-.hamburger__link_black{
-  color: #1A1B22;
+.hamburger__link_black {
+  color: #1a1b22;
 }
 
-.hamburger__button-signin_login{
+.hamburger__button-signin_login {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
 
-.hamburger__button-signin_black{
-  border: 1px solid #1A1B22;
-  color: #1A1B22;
+.hamburger__button-signin_black {
+  border: 1px solid #1a1b22;
+  color: #1a1b22;
 }
-

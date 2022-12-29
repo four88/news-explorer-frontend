@@ -1,12 +1,11 @@
-import ModalWithForm from '../ModalWithForm/ModalWithForm';
-import './RegistrationSuccess.css';
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import "./RegistrationSuccess.css";
 
 export default function RegistrationSuccess({
   isRegisterSuccess,
   onClose,
-  handleRegistrationLink
+  handleRegistrationLink,
 }) {
-
   return (
     <ModalWithForm
       isOpen={isRegisterSuccess}
@@ -14,13 +13,13 @@ export default function RegistrationSuccess({
       title={"Registration sucessfully completed !"}
       onClose={onClose}
     >
-      <button className='registration__link'
+      <button
+        className="registration__link"
         onClick={handleRegistrationLink}
-        type='button'
+        type="button"
       >
         Sign in
       </button>
     </ModalWithForm>
-
-  )
+  );
 }

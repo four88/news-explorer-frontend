@@ -1,5 +1,5 @@
-.nav{
-  display: flex; 
+.nav {
+  display: flex;
   border-bottom: 2px solid rgba(196, 196, 196, 0.01);
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
   height: 80px;
@@ -7,16 +7,16 @@
   align-items: center;
   width: 100%;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-style: normal;
-  margin:0;
+  margin: 0;
   font-weight: 500;
   font-size: 18px;
   line-height: 133%;
 }
 
-.nav__name{
-  font-family: 'Roboto Slab';
+.nav__name {
+  font-family: "Roboto Slab";
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -24,8 +24,8 @@
   text-align: center;
 }
 
-.nav__container{
-  display: flex; 
+.nav__container {
+  display: flex;
   height: 100%;
   flex-direction: row;
   justify-content: space-between;
@@ -33,26 +33,26 @@
   align-items: center;
 }
 
-.nav__lists{
+.nav__lists {
   align-items: center;
-  display: flex;    
+  display: flex;
   list-style-type: none;
   column-gap: 16px;
   height: 100%;
 }
 
-.nav__button-signin{
+.nav__button-signin {
   color: white;
   width: 176px;
-  background-color: rgba(0,0,0, 0.00);
+  background-color: rgba(0, 0, 0, 0);
   height: 48px;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   border-radius: 100px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
-  line-height: 24px; 
+  line-height: 24px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   display: flex;
@@ -61,13 +61,13 @@
   align-items: center;
 }
 
-.nav__button-signin_login{
+.nav__button-signin_login {
   width: auto;
   padding-left: 19px;
   padding-right: 19px;
 }
 
-.nav__item{
+.nav__item {
   display: flex;
   align-items: center;
   height: 100%;
@@ -76,24 +76,23 @@
   transition: all 0.2s ease-in-out;
 }
 
-.nav__link{
+.nav__link {
   text-decoration: none;
-  color: #FFFFFF;
+  color: #ffffff;
   transition: all 0.2s ease-in-out;
 }
 
-.nav__link_article{
+.nav__link_article {
   margin-left: 23px;
   margin-right: 23px;
 }
 
-.nav__link_home{
+.nav__link_home {
   margin-left: 9.5px;
   margin-right: 9.5px;
 }
 
-
-.nav__button-signin:hover{
+.nav__button-signin:hover {
   opacity: 0.6;
 }
 /**/
@@ -101,22 +100,21 @@
 /*   border-bottom: solid 3px #FFFFFF; */
 /* } */
 
-.nav__item--active{
-  border-bottom: solid 3px #FFFFFF;
+.nav__item--active {
+  border-bottom: solid 3px #ffffff;
 }
 
-.nav__item--active{
-  border-bottom: solid 3px #FFFFFF;
+.nav__item--active {
+  border-bottom: solid 3px #ffffff;
 }
-
 
 /* change to black when go to /saved-news */
-.nav_black{
-  border-bottom: 2px solid #D1D2D6;
+.nav_black {
+  border-bottom: 2px solid #d1d2d6;
 }
 
-.nav__name_black{
-  color: #1A1B22;
+.nav__name_black {
+  color: #1a1b22;
 }
 
 /**/
@@ -124,34 +122,33 @@
 /*   border-bottom: solid 3px #1A1B22; */
 /* } */
 
-.nav__item_black--active{
-  border-bottom: solid 3px #1A1B22;
+.nav__item_black--active {
+  border-bottom: solid 3px #1a1b22;
 }
 
-.nav__link_black{
-  color: #1A1B22;
+.nav__link_black {
+  color: #1a1b22;
 }
 
-.nav__button-signin_black{
-  color: #1A1B22;
-  background-color: rgba(0,0,0, 0.00);
+.nav__button-signin_black {
+  color: #1a1b22;
+  background-color: rgba(0, 0, 0, 0);
   padding-left: 15px;
   padding-right: 15px;
-  border: 1px solid #D1D2D6;
-
+  border: 1px solid #d1d2d6;
 }
 
-.nav__item--hamburger{
+.nav__item--hamburger {
   display: none;
 }
 
-@media screen and (max-width: 950px){
-  .nav{
-      height: 66px;
-    }
+@media screen and (max-width: 950px) {
+  .nav {
+    height: 66px;
+  }
 
-  .nav__container{
-    display: flex; 
+  .nav__container {
+    display: flex;
     height: 100%;
     flex-direction: row;
     justify-content: space-between;
@@ -159,11 +156,11 @@
     align-items: center;
   }
 
-  .nav__link{
+  .nav__link {
     font-size: 16px;
   }
 
-  .nav__button-signin{
+  .nav__button-signin {
     height: 40px;
     max-width: 152px;
     font-size: 16px;
@@ -171,51 +168,48 @@
     gap: 17px;
   }
 
-  .nav__button-signin_login{
+  .nav__button-signin_login {
     padding-left: 15px;
-    padding-right: 15px
+    padding-right: 15px;
   }
+}
 
-} 
-
-@media screen and (max-width: 550px){
-
-  .nav{
+@media screen and (max-width: 550px) {
+  .nav {
     height: 56px;
   }
 
-  .nav__container{
+  .nav__container {
     width: calc(100% - 36px);
   }
 
-  .nav__name{
+  .nav__name {
     font-size: 16px;
     line-height: 150%;
   }
 
-  .nav__link{
+  .nav__link {
     display: none;
   }
 
-  .nav__button-signin{
+  .nav__button-signin {
     display: none;
   }
 
-  .nav__item--hamburger{
+  .nav__item--hamburger {
     display: flex;
   }
 
-  .nav__hamburger{
+  .nav__hamburger {
     background: none;
     border: none;
-    width : 24px;
+    width: 24px;
     height: 24px;
     cursor: pointer;
   }
 
-  .nav__hamburger_icon{
+  .nav__hamburger_icon {
     width: 100%;
     height: 100%;
   }
-
 }

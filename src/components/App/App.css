@@ -1,4 +1,4 @@
-@import url('../../utils/fonts/fonts.css');
+@import url("../../utils/fonts/fonts.css");
 
 .body {
   background-color: gray;
@@ -9,9 +9,8 @@
   box-sizing: border-box;
 }
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-

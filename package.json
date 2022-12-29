@@ -2,7 +2,7 @@
   "name": "news-explorer-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://four88.github.io/news-explorer-frontend",
+  "homepage": "",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -15,8 +15,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "npm run build && scp -r ./build/* pharanyuchuenjit@news-project.students.nomoredomainssbs.ru:/home/pharanyuchuenjit/news-explorer-frontend",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
