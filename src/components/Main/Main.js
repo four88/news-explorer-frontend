@@ -39,11 +39,9 @@ export default function Main({
   const updatedCards = updateCards(cards, savedCards);
 
   const handleDeleteClickUnmark = (cardId, setIsSavedButton) => {
-    console.log(cardId);
     mainApi
       .deleteSaveArticle(cardId, localStorage.getItem("token"))
       .then((res) => {
-        console.log(res);
         setIsSavedButton(false);
       })
       .catch((err) => console.log(err));

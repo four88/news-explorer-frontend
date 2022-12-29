@@ -49,14 +49,11 @@ export default function Card({
           localStorage.getItem("token")
         )
         .then((res) => {
-          console.log(res);
           setIsSavedButton(true);
           // set _id to card that user click for handle unmark
           card._id = res.data._id;
         })
         .catch((err) => console.log(err));
-    } else {
-      console.log("Please Sign in");
     }
   };
 

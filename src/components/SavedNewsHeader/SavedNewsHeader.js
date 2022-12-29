@@ -15,7 +15,6 @@ export default function SavedNewsHeader({ inSavedNews }) {
       .getSaveArticle(localStorage.getItem("token"))
       .then((res) => {
         setSavedCards(res.data);
-        console.log(savedCards);
       })
       .catch((err) => console.log(err));
   }, []);
