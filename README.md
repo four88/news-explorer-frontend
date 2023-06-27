@@ -21,4 +21,5 @@ This project was built using the following tools and technologies:
 
 ## Deployment
 
-This project is deployed on Google Cloud using a Linux server for both the frontend and backend. The live project can be accessed at the following link: [News Explorer](https://news-project.students.nomoredomainssbs.ru/)
+This project is deployed on Netlify for frontend and render for backend. 
+The live project can be accessed at the following link: [News Explorer](https://649ab4fcce5a766433de0fb7--euphonious-twilight-07d568.netlify.app/saved-news)
