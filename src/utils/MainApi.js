@@ -87,7 +87,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: `https://api.news-project.students.nomoredomainssbs.ru`,
+  baseUrl: `https://news-explorer-backend-udog.onrender.com`,
 });
 
 export default mainApi;
